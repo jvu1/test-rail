@@ -51,7 +51,8 @@ def build_xml(output, update_flag):
 	#create the root elements
 	root_sections = etree.Element('sections')
 	root_section = etree.SubElement(root_sections, 'section')
-	master = raw_input("Enter your name: ") #name this to your name so you know what folder it goes into
+	if update_flag == 'new':
+		master = raw_input("Enter your name: ") #name this to your name so you know what folder it goes into
 	root_name = etree.SubElement(root_section, 'name').text = master
 	sub_sections = etree.SubElement(root_section, 'sections')
 
@@ -92,7 +93,7 @@ def main():
 		result = build_xml(output, update_flag)
 		result.write(os.path.join(os.getcwd(), sys.argv[2]), xml_declaration=True, encoding='utf-8', method="xml", pretty_print=True)
 	except IndexError:
-		print "You are missing an argument. Remember it's 'python TestRail.py <name-of-csv-file.csv> <name-of-output-file.xml> <update or new>'"
+		print "You are missing an argument. Remember it's 'python TestRail.py name-of-csv-file.csv name-of-output-file.xml update | new'"
 
 if __name__ == '__main__':
     main()
