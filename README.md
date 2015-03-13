@@ -8,10 +8,11 @@ The Confluence page for how to run this script is here: https://fulcrumtech.atla
 
 ## Prerequisites:
 1. Download and install the lxml library 
-	1. Run the command `sudo easy_install pip` via command line`
+	1. Run the command `sudo easy_install pip` via command line
 	2. Run `pip install lxml` (run it with sudo if you get a permissions error) via command line.
 
 ## Important Fields:
+
 -Folder: The name of the folder the test case belongs to. For example, if you have multiple test cases that fit into Inventory Picking, make sure you label them in this field (required field).
 -Title: The title of the test case (required field).
 -Automated: This field will only accept TRUE or FALSE. If you know the test case has been automated, the value should be TRUE (required field).
