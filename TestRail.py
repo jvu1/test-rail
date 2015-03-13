@@ -53,6 +53,8 @@ def build_xml(output, update_flag):
 	root_section = etree.SubElement(root_sections, 'section')
 	if update_flag == 'new':
 		master = raw_input("Enter your name: ") #name this to your name so you know what folder it goes into
+	else:
+		master = 'place_holder'
 	root_name = etree.SubElement(root_section, 'name').text = master
 	sub_sections = etree.SubElement(root_section, 'sections')
 
