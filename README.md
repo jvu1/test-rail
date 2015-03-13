@@ -44,9 +44,9 @@ The Confluence page for how to run this script is here: https://fulcrumtech.atla
 3. Save TestRail.py and the .csv file from step 2 into the same folder.
 4. Using command line, navigate to the location of the folder from step 3.
 5. Run the command `python TestRail.py name-of-csv-file.csv name-of-output-file.xml new` 
-	a. The name of the .csv file should be the name of the file from step 2.
-	b. The name of the output file is what you want to name it. Make sure the extension is `.xml`
-	c. Example: `python TestRail.py john.csv john.xml new`
+	1. The name of the .csv file should be the name of the file from step 2.
+	2. The name of the output file is what you want to name it. Make sure the extension is `.xml`
+	3. Example: `python TestRail.py john.csv john.xml new`
 6. After you run the command, it will ask you to enter your name. This will be the master folder where all of your test cases will be in once they are imported.
 7. If successful, the .xml file will be created in the same location as the script and the .csv file.
 8. Import the .xml file into TestRail in your chosen location/suite.
