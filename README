@@ -1,0 +1,5 @@
+This is a script to convert test cases from excel/csv into XML so that they can be put into the QA test case management solution, TestRail.
+
+This script depends on the lxml library to create the XML structure.
+
+The Confluence page for how to run this script is here: https://fulcrumtech.atlassian.net/wiki/display/QAS/Importing+Test+Cases+into+TestRail
