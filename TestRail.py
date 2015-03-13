@@ -35,7 +35,7 @@ def common(case, row, update_flag):
 	step_list = row['Testing Steps'].rstrip('\n').split('\n')
 	count = 1
 	for s in step_list:
-		#s = re.sub(r'\w+\) ', '', s) #strips out everything before the actual step
+		#strips out everything before the actual step
 		if update_flag == 'update':
 			s = re.sub(r'\w+\. ', '', s)
 		else:
