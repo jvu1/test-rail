@@ -80,9 +80,9 @@ def main():
 	#exception handling for any errors while running the script
 	try:
 		output = read_csv(os.path.join(os.getcwd(), sys.argv[1]))
-		update_flag = sys.argv[3].lower()
+		update_flag = sys.argv[3]
 
-		if update_flag not in ['update', 'new']:
+		if update_flag.lower() not in ['update', 'new']:
 			print "The third argument only acccepts the values 'update' or 'new'."
 			sys.exit(2)
 		if ("." + re.sub(r'\w+\.', '', sys.argv[2])) != '.xml':
