@@ -15,7 +15,7 @@ The Confluence page for how to run this script is here: https://fulcrumtech.atla
 		2. Run `pip install lxml` (run it with sudo if you get a permissions error) via command line.
 
 ## Important Fields:
-	Folder: The name of the folder the test case belongs to. For example, if you have multiple test cases that fit into Inventory Picking, make sure you label them in this field (required field).
+	-Folder: The name of the folder the test case belongs to. For example, if you have multiple test cases that fit into Inventory Picking, make sure you label them in this field (required field).
 	Title: The title of the test case (required field).
 	Automated: This field will only accept TRUE or FALSE. If you know the test case has been automated, the value should be TRUE (required field).
 	BVT: This field will only accept TRUE or FALSE. If the test is part of a BVT, the value should be TRUE (required field).
@@ -27,18 +27,18 @@ The Confluence page for how to run this script is here: https://fulcrumtech.atla
 	JIRA Ticket: JIRA ticket number (required field).
 
 ## Updating TestRail Test Cases:
-	1. Export the test cases into .csv. Keep in mind you cannot specifically target which test cases you want to export as TestRail will export all test cases in the suite.
-	2. Open the .csv file and in first cell (A1), there will be some weird characters. Rename this cell to 'Case ID'.
-	3. Update the test cases you want in the .csv file, while making sure they adhere to the format stated in the Important Fields section, especially Testing Steps.
-	4. When you are done updating, make sure the .csv file is in the same directory or folder as the TestRail.py script in the Files section.
-	5. Open up command prompt and navigate to the location of the .csv and TestRail.py files.
-	6. Run the following command: `python TestRail.py name-of-csv-file.csv name-of-output-file.xml update`
-		1. The name of the .csv file should be the name of the file from step 2.
-		2. The name of the output file is what you want to name it. Make sure the extension is .xml.
-		3. Example: "python TestRail.py john.csv john.xml update"
-	7. It will also ask you enter a name. Enter any name you want as this doesn't matter when updating test cases.
-	8. If successful, the .xml file will be created in the same location as the script and the .csv file.
-	9. Import the .xml file into TestRail in your chosen location/suite.
+1. Export the test cases into .csv. Keep in mind you cannot specifically target which test cases you want to export as TestRail will export all test cases in the suite.
+2. Open the .csv file and in first cell (A1), there will be some weird characters. Rename this cell to 'Case ID'.
+3. Update the test cases you want in the .csv file, while making sure they adhere to the format stated in the Important Fields section, especially Testing Steps.
+4. When you are done updating, make sure the .csv file is in the same directory or folder as the TestRail.py script in the Files section.
+5. Open up command prompt and navigate to the location of the .csv and TestRail.py files.
+6. Run the following command: `python TestRail.py name-of-csv-file.csv name-of-output-file.xml update`
+	1. The name of the .csv file should be the name of the file from step 2.
+	2. The name of the output file is what you want to name it. Make sure the extension is .xml.
+	3. Example: "python TestRail.py john.csv john.xml update"
+7. It will also ask you enter a name. Enter any name you want as this doesn't matter when updating test cases.
+8. If successful, the .xml file will be created in the same location as the script and the .csv file.
+9. Import the .xml file into TestRail in your chosen location/suite.
 
 ## Importing New Test Cases:
 	1. Make sure all of your test cases are in the format stated in the Important Fields section and in this document: template_new.xlsx
