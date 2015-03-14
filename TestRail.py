@@ -26,7 +26,6 @@ def common(case, row, update_flag):
 	preconditions = etree.SubElement(custom, 'precondition').text = row['Preconditions'].decode(encoding='latin-1')
 	expected_results = etree.SubElement(custom, 'expectedresults').text = row['Expected Results'].decode(encoding='latin-1')
 	notes = etree.SubElement(custom, 'notes').text = row['Notes']
-	folder = etree.SubElement(custom, 'folder').text = row['Folder']
 	ticket = etree.SubElement(custom, 'ticket').text = row['Jira Ticket']
 
 	steps = etree.SubElement(custom, 'testingsteps')
