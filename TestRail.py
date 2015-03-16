@@ -60,16 +60,16 @@ def build_xml(output, update_flag):
 	track = set() #keep track of existing folders/section
 	for row in output:
 		#look to see if this folder/section already exists; if so, add a new case and custom underneath
-		if row['Folder'] in track:
+		if row['Functional Area'] in track:
 			for element in sub_sections:
-				if element.get("folder") == row['Folder']:
+				if element.get("folder") == row['Functional Area']:
 					case = etree.SubElement(element[1], 'case')
 					common(case, row, update_flag)
 		#folder/section doesn't exist yet so create structure and add new case and custom underneath
 		else:
-			track.add(row['Folder'])
-			section = etree.SubElement(sub_sections, 'section', folder=row['Folder'])
-			name = etree.SubElement(section, 'name').text = row['Folder']
+			track.add(row['Functional Area'])
+			section = etree.SubElement(sub_sections, 'section', folder=row['Functional Area'])
+			name = etree.SubElement(section, 'name').text = row['Functional Area']
 			cases = etree.SubElement(section, 'cases')
 			case = etree.SubElement(cases, 'case')
 			common(case, row, update_flag)
