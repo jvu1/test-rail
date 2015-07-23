@@ -15,8 +15,6 @@ The Confluence page for how to run this script is here: https://fulcrumtech.atla
 
 - Functional Area: The name of the folder/functional area the test case belongs to. For example, if you have multiple test cases that fit into Inventory Picking, make sure you label them in this field (required field).
 - Title: The title of the test case (required field).
-- Automated: This field will only accept TRUE or FALSE. If you know the test case has been automated, the value should be TRUE (required field).
-- BVT: This field will only accept TRUE or FALSE. If the test is part of a BVT, the value should be TRUE (required field).
 - Scenario: The scenario the user will be testing for (required field).
 - Preconditions: Any conditions that need to be met to run the test case (not a required field).
 - Testing Steps: The steps have to be entered in one cell and entered in a very specific format or else they will not import correctly. Place each step in the same cell, but on a new line (ctrl+alt+enter for mac, alt+enter for windows) numbered like 1) , 2) , etc (required field).
