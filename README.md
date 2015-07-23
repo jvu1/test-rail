@@ -13,7 +13,7 @@ The Confluence page for how to run this script is here: https://fulcrumtech.atla
 
 ## Important Fields:
 
-- Functional Area: The name of the folder/functional area the test case belongs to. For example, if you have multiple test cases that fit into Inventory Picking, make sure you label them in this field (required field).
+- Section: The name of the folder/functional area the test case belongs to. For example, if you have multiple test cases that fit into Inventory Picking, make sure you label them in this field (required field).
 - Title: The title of the test case (required field).
 - Scenario: The scenario the user will be testing for (required field).
 - Preconditions: Any conditions that need to be met to run the test case (not a required field).
