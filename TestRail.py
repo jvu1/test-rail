@@ -20,8 +20,8 @@ def common(case, row, update_flag):
 
 	title = etree.SubElement(case, 'title').text = row['Title'].decode('latin-1', 'ignore')
 	custom = etree.SubElement(case, 'custom')
-	automated = etree.SubElement(custom, 'automated').text = row['Automated']
-	bvt = etree.SubElement(custom, 'bvt').text = row['BVT']
+	#automated = etree.SubElement(custom, 'automated').text = row['Automated']
+	#bvt = etree.SubElement(custom, 'bvt').text = row['BVT']
 	scenario = etree.SubElement(custom, 'scenario').text = row['Scenario'].decode(encoding='latin-1')
 	preconditions = etree.SubElement(custom, 'precondition').text = row['Preconditions'].decode(encoding='latin-1')
 	expected_results = etree.SubElement(custom, 'expectedresults').text = row['Expected Results'].decode(encoding='latin-1')
