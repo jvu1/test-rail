@@ -17,11 +17,14 @@ def common(case, row, update_flag):
 	#if user decides to update existing test cases, it will grab the Case ID
 	if update_flag == 'update':
 		case_id = etree.SubElement(case, 'id').text = row['Case ID']
+		#adds each step into an array
+		#exporting out of TestRails adds an empty line between steps so accounting for that	
+		step_list = row['Testing Steps'].rstrip('\n').split('\n\n')
+	else:
+		step_list = row['Testing Steps'].rstrip('\n').split('\n')
 
 	title = etree.SubElement(case, 'title').text = row['Title'].decode('latin-1', 'ignore')
 	custom = etree.SubElement(case, 'custom')
-	#automated = etree.SubElement(custom, 'automated').text = row['Automated']
-	#bvt = etree.SubElement(custom, 'bvt').text = row['BVT']
 	scenario = etree.SubElement(custom, 'scenario').text = row['Scenario'].decode(encoding='latin-1')
 	preconditions = etree.SubElement(custom, 'precondition').text = row['Preconditions'].decode(encoding='latin-1')
 	expected_results = etree.SubElement(custom, 'expectedresults').text = row['Expected Results'].decode(encoding='latin-1')
@@ -33,12 +36,6 @@ def common(case, row, update_flag):
 		steps = etree.SubElement(custom, 'testingsteps')
 
 		#creates the correct xml structure for each individual step
-		if update_flag == 'update':
-			#exporting out of TestRails adds an empty line between steps so accounting for that	
-			step_list = row['Testing Steps'].rstrip('\n').split('\n\n')
-		else:
-			step_list = row['Testing Steps'].rstrip('\n').split('\n')
-
 		count = 1
 		for s in step_list:
 			#strips out everything before the actual step
