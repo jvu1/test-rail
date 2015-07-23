@@ -28,21 +28,28 @@ def common(case, row, update_flag):
 	notes = etree.SubElement(custom, 'notes').text = row['Notes']
 	ticket = etree.SubElement(custom, 'ticket').text = row['Jira Ticket']
 
-	steps = etree.SubElement(custom, 'testingsteps')
+	#only create steps xml structure if there are actual steps
+	if len(row['Testing Steps']) > 0:
+		steps = etree.SubElement(custom, 'testingsteps')
 
-	#creates the correct xml structure for each individual step
-	step_list = row['Testing Steps'].rstrip('\n').split('\n')
-	count = 1
-	for s in step_list:
-		#strips out everything before the actual step
+		#creates the correct xml structure for each individual step
 		if update_flag == 'update':
-			s = re.sub(r'\w+\. ', '', s)
+			#exporting out of TestRails adds an empty line between steps so accounting for that	
+			step_list = row['Testing Steps'].rstrip('\n').split('\n\n')
 		else:
-			s = re.sub(r'\w+\) ', '', s)
-		step = etree.SubElement(steps, 'step')
-		index = etree.SubElement(step, 'index').text = str(count)
-		content = etree.SubElement(step, 'content').text = s.decode(encoding='latin-1')
-		count += 1
+			step_list = row['Testing Steps'].rstrip('\n').split('\n')
+
+		count = 1
+		for s in step_list:
+			#strips out everything before the actual step
+			if update_flag == 'update':
+				s = re.sub(r'\w+\. ', '', s)
+			else:
+				s = re.sub(r'\w+\) ', '', s)
+			step = etree.SubElement(steps, 'step')
+			index = etree.SubElement(step, 'index').text = str(count)
+			content = etree.SubElement(step, 'content').text = s.decode(encoding='latin-1')
+			count += 1
 
 def build_xml(output, update_flag): 
 	'''Takes in a list of dictionaries of test cases and first builds the main roots of the xml tree and then adds each test case in the appropriate sections of the tree.'''
@@ -60,16 +67,16 @@ def build_xml(output, update_flag):
 	track = set() #keep track of existing folders/section
 	for row in output:
 		#look to see if this folder/section already exists; if so, add a new case and custom underneath
-		if row['Functional Area'] in track:
+		if row['Section'] in track:
 			for element in sub_sections:
-				if element.get("folder") == row['Functional Area']:
+				if element.get("folder") == row['Section']:
 					case = etree.SubElement(element[1], 'case')
 					common(case, row, update_flag)
 		#folder/section doesn't exist yet so create structure and add new case and custom underneath
 		else:
-			track.add(row['Functional Area'])
-			section = etree.SubElement(sub_sections, 'section', folder=row['Functional Area'])
-			name = etree.SubElement(section, 'name').text = row['Functional Area']
+			track.add(row['Section'])
+			section = etree.SubElement(sub_sections, 'section', folder=row['Section'])
+			name = etree.SubElement(section, 'name').text = row['Section']
 			cases = etree.SubElement(section, 'cases')
 			case = etree.SubElement(cases, 'case')
 			common(case, row, update_flag)
@@ -84,17 +91,24 @@ def main():
 		output = read_csv(os.path.join(os.getcwd(), sys.argv[1]))
 		update_flag = sys.argv[3]
 
-		if update_flag.lower() not in ['update', 'new']:
-			print "The third argument only acccepts the values 'update' or 'new'."
+		if ("." + re.sub(r'\w+\.', '', sys.argv[1])) != '.csv':
+			print "The input file has to be a .csv file."
 			sys.exit(2)
 		if ("." + re.sub(r'\w+\.', '', sys.argv[2])) != '.xml':
-			print "The second argumment has to be a .xml file."
+			print "The output file has to be a .xml file."
+			sys.exit(2)
+		if update_flag.lower() not in ['update', 'new']:
+			print "Either choose 'update' or 'new'."
 			sys.exit(2)
 
 		result = build_xml(output, update_flag)
 		result.write(os.path.join(os.getcwd(), sys.argv[2]), xml_declaration=True, encoding='utf-8', method="xml", pretty_print=True)
 	except IndexError:
 		print "You are missing an argument. Remember it's 'python TestRail.py name-of-csv-file.csv name-of-output-file.xml update | new'"
+	except IOError:
+		print "File does not exist."
+	except KeyError as e:
+		print "'" + e.args[0] + "' column does not exist in the input file."
 
 if __name__ == '__main__':
     main()
